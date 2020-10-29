@@ -1,10 +1,10 @@
-import {CREATE_TODO, CREATE_TODO} from '../types'
+import {CREATE_ERROR, CREATE_TODO} from '../types'
 import axios from 'axios'
 
-export const createTodo = (id, obj) => async dispatch => {
+export const createTodo = (obj) => async dispatch => {
     console.log("creating action", obj)
     try{
-        const res = await axios.put('http://localhost:3001/todos/update/' + id, {
+        const res = await axios.post('http://localhost:3001/todos/add/', {
             "description": obj.description,
             "assignee": obj.assignee,
             "priority": obj.priority,
@@ -12,13 +12,13 @@ export const createTodo = (id, obj) => async dispatch => {
         })
         console.log('response', res)
         dispatch( {
-            type: EDIT_TODO,
+            type: CREATE_TODO,
             payload: res.data
         })
     }
     catch(e){
         dispatch( {
-            type: EDIT_ERROR,
+            type: CREATE_ERROR,
             payload: console.log(e),
         })
     }

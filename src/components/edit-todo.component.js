@@ -110,7 +110,7 @@ const EditTodo = class EditTodo extends Component {
                             <label className="form-check-label">High</label>
                         </div>
                         <div className="form-group">
-                            <button value="Update Todo" className="btn btn-primary" onClick={this.update.bind(this)}/>
+                            <button className="btn btn-primary" onClick={this.update.bind(this)}>Update</button>
                         </div>
                         </div>
                 </div>
