@@ -8,7 +8,7 @@ const PORT = 3001;
 
 let Todo = require('./todo.model');
 
-const connectionString = "mongodb+srv://Jamie:Zxc-bqfhc-5g377@jamiescluster.0yatu.mongodb.net/MERNTCVTechTest?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://TCV:Password01!@jamiescluster.0yatu.mongodb.net/MERNTCVTechTest?retryWrites=true&w=majority";
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 const connection = mongoose.connection;
 
