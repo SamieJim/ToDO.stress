@@ -23,7 +23,7 @@ const TodoItem = class TodoItem extends Component {
     }
 
     search(e){
-        this.props.result = this.props.fetchTodo(e.target[0].value);
+        this.props.fetchTodo(e.target[0].value);
     }
 
     render() {
@@ -31,7 +31,7 @@ const TodoItem = class TodoItem extends Component {
             <div>
                 <form id="search" onSubmit={this.search.bind(this)}>
                     <input type="text" id="search" placeholder="Search by ID...."></input>
-                    <button type="submit" target="search" className="btn btn-primary">Update</button>
+                    <button type="submit" target="search" className="btn btn-primary">SEARCH</button>
                 </form>
                 <div id="results">
                     <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -44,7 +44,7 @@ const TodoItem = class TodoItem extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.result ? this.renderResults.bind(this) : this.renderNothingFound.bind(this)}
+                            {this.props.todos ? this.renderResults.bind(this) : this.renderNothingFound.bind(this)}
                         </tbody>
                     </table>
                 </div>
@@ -54,7 +54,7 @@ const TodoItem = class TodoItem extends Component {
 }
 
 const mapStateToProps  = (state) => ({
-    result: state.todos
+    todos: state.todos
 })
 
 export default connect(mapStateToProps, {fetchTodo})(TodoItem)
