@@ -74,6 +74,7 @@ todoRoutes.post('/add', async(req, res) => {
 });
 
 todoRoutes.put('/update/:id', async(req, res) => {
+    console.log('Req', req)
     let id = req.params.id;
     if(!id)
         return res.status(400).json('Incomplete request');
