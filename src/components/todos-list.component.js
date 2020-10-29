@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import {fetchTodos} from '../store/actions/fetchTodos'
 
 
 
 const TodoList = class TodosList extends Component {
+    componentDidMount(){
+        this.props.fetchTodos()
+    }
     render() {
-        if(!this.props.fetched)
-            this.props.fetchTodos();
-        console.log(this.props)
-        const {todos} = this.props;
+        const {todos} = this.props.todos
+        console.log(todos)
+
         const todoList = todos.length ? (
             todos.map(todo => {
-                console.log(todo)
                 return (
                     <div>
-                        <h3>Todo List</h3>
                         <table className="table table-striped" style={{ marginTop: 20 }}>
                             <thead>
                                 <tr>
@@ -55,17 +56,8 @@ const TodoList = class TodosList extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-      todos: state.todos,
-      fetched: state.fetched
-    }
-  }
+const mapStateToProps  = (state) => ({
+    todos:state.todos
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchTodos: () => {dispatch({type: 'FETCH_TODOS'})}
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (TodoList);
+export default connect(mapStateToProps, {fetchTodos})(TodoList)
