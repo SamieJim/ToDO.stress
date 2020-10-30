@@ -5,35 +5,29 @@ import {fetchTodo} from '../store/actions/fetchTodo';
 
 const TodoItem = class TodoItem extends Component {
 
-    renderResults(){
-        return  (<tr>
-                    <td className={this.props.result.completed ? 'completed' : ''}>{this.props.result.description}</td>
-                    <td className={this.props.result.completed ? 'completed' : ''}>{this.props.result.assignee}</td>
-                    <td className={this.props.result.completed ? 'completed' : ''}>{this.props.esult.priority}</td>
-                    <td>
-                        <Link to={"/edit/"+this.props._id}>Edit</Link>
-                    </td>
-                </tr>);
-    }
+    constructor() {
+        super();
+        this.searchRef = React.createRef();
+      }
 
-    renderNothingFound(){
-        return  (<tr>
-                    <p>No results found.</p>
-                </tr>);
-    }
-
-    search(e){
-        this.props.fetchTodo(e.target[0].value);
+    searchTodos(){
+        this.props.fetchTodo(this.searchRef.current.value);
+        this.forceUpdate();
     }
 
     render() {
-        return (
+        const todos = []
+        todos[0] = this.props.todos
+        console.log(todos)
+        let searchBar = (
             <div>
-                <form id="search" onSubmit={this.search.bind(this)}>
-                    <input type="text" id="search" placeholder="Search by ID...."></input>
-                    <button type="submit" target="search" className="btn btn-primary">SEARCH</button>
-                </form>
-                <div id="results">
+                <input ref={this.searchRef} type="text" placeholder="Search by ID"/>
+                <button onClick={this.searchTodos.bind(this)}>Search</button>
+            </div>
+        )
+        let todo =
+            (
+                <div>
                     <table className="table table-striped" style={{ marginTop: 20 }}>
                         <thead>
                             <tr>
@@ -44,12 +38,26 @@ const TodoItem = class TodoItem extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.todos ? this.renderResults.bind(this) : this.renderNothingFound.bind(this)}
+                            <tr>
+                            <td className={this.props.todos.todos.completed ? 'completed' : ''}>{this.props.todos.todos.description}</td>
+                            <td className={this.props.todos.todos.completed ? 'completed' : ''}>{this.props.todos.todos.assignee}</td>
+                            <td className={this.props.todos.todos.completed ? 'completed' : ''}>{this.props.todos.todos.priority}</td>
+                            <td>
+                                <Link to={"/edit/"+this.props.todos.todos._id}>Edit</Link>
+                            </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        )
+            )
+    return (
+        <div>
+          <div className="container todoList">
+            <h4 className="center">Todo List</h4>
+            {[searchBar, todo]}
+          </div>
+        </div>
+      )
     }
 }
 
