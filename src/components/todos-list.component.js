@@ -11,7 +11,6 @@ const TodoList = class TodosList extends Component {
     }
     render() {
         const {todos} = this.props.todos
-        console.log(todos)
 
         const todoList = todos.length ? (
             todos.map(todo => {

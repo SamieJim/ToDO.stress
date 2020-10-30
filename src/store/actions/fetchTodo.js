@@ -5,7 +5,6 @@ export const fetchTodo = (id) => async dispatch => {
     
     try{
         const res = await axios.get(`http://localhost:3001/todos/` + id);
-        console.log('RESULT', res);
         dispatch( {
             type: FETCH_TODOS,
             payload: res.data

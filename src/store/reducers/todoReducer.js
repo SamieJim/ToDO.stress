@@ -11,7 +11,6 @@ export default function(state = initialState, action){
     switch(action.type){
 
         case FETCH_TODOS:
-            console.log('fetching...')
             return {
                 ...state,
                 todos:action.payload,
@@ -28,7 +27,6 @@ export default function(state = initialState, action){
             error: true
         }
         case EDIT_TODO:
-            console.log('editing reducer...', action.payload)
             return {
                 ...state,
                 todos:action.payload,

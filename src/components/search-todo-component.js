@@ -18,7 +18,6 @@ const TodoItem = class TodoItem extends Component {
     render() {
         const todos = []
         todos[0] = this.props.todos
-        console.log(todos)
         let searchBar = (
             <div>
                 <input ref={this.searchRef} type="text" placeholder="Search by ID"/>

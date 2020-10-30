@@ -37,10 +37,8 @@ const EditTodo = class EditTodo extends Component {
     }
 
     render() {
-        console.log(this.props)
         const todos = []
         todos[0] = this.props.todos
-        console.log(todos)
 
         const editTodoWindow = todos.map(todo => {
             return (
